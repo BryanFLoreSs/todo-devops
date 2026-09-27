@@ -11,6 +11,7 @@ export default function Home() {
     { text: "Setup Git repository", completed: true },
   ]);
 
+  // Add Task
   function addTask() {
     if (task.trim() === "") return;
 
@@ -25,6 +26,7 @@ export default function Home() {
     setTask("");
   }
 
+  // Complete Task
   function completeTask(index: number) {
     setTasks(
       tasks.map((item, i) =>
@@ -33,6 +35,11 @@ export default function Home() {
           : item
       )
     );
+  }
+
+  // Delete Task
+  function deleteTask(index: number) {
+    setTasks(tasks.filter((_, i) => i !== index));
   }
 
   return (
@@ -61,7 +68,9 @@ export default function Home() {
 
             <span>{item.text}</span>
 
-            <button>Delete</button>
+            <button onClick={() => deleteTask(index)}>
+              Delete
+            </button>
           </div>
         ))}
       </div>
