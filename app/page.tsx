@@ -25,6 +25,16 @@ export default function Home() {
     setTask("");
   }
 
+  function completeTask(index: number) {
+    setTasks(
+      tasks.map((item, i) =>
+        i === index
+          ? { ...item, completed: !item.completed }
+          : item
+      )
+    );
+  }
+
   return (
     <main>
       <h1>TODO APPLICATION</h1>
@@ -46,7 +56,7 @@ export default function Home() {
             <input
               type="checkbox"
               checked={item.completed}
-              readOnly
+              onChange={() => completeTask(index)}
             />
 
             <span>{item.text}</span>
